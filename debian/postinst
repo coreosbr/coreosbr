@@ -18,6 +18,9 @@ case "$1" in
     egrep -i "^docker" /etc/group || groupadd docker
     usermod -aG docker dokku
 
+    mkdir -p ${DOKKU_LIB_ROOT}/config
+    chown dokku:dokku -R ${DOKKU_LIB_ROOT}/config
+
     echo "Setting up plugin directories"
     # should be replaced by `plugn init`
     mkdir -p ${DOKKU_LIB_ROOT}/core-plugins/available ${DOKKU_LIB_ROOT}/plugins/available
